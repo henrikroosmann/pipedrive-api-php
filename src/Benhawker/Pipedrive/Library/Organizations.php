@@ -1,10 +1,12 @@
 <?php namespace Benhawker\Pipedrive\Library;
 
+use Benhawker\Pipedrive\Exceptions\PipedriveMissingFieldError;
+
 /**
  * Pipedrive Organizations Methods
  *
- * Organizations are companies and other kinds of organizations you are making
- * Deals with. Persons can be associated with organizations so that each
+ * Organizations are companies and other kinds of organizations you are making 
+ * Deals with. Persons can be associated with organizations so that each 
  * organization can contain one or more Persons.
  *
  */
@@ -127,13 +129,28 @@ class Organizations
         $output['data'] = count($this->response) ? $this->response[0] : $this->response;
 
         return $output;
+
+    /**
+     * Lists deals associated with a organization.
+     *
+     * @param  array $data (id, start, limit)
+     * @return array deals
+     */
+    public function deals(array $data)
+    {
+        //if there is no name set throw error as it is a required field
+        if (!isset($data['id'])) {
+            throw new PipedriveMissingFieldError('You must include the "id" of the organization when getting deals');
+        }
+
+        return $this->curl->get('organizations/' . $data['id'] . '/deals');
     }
 
     /**
      * Updates an organization
      *
-     * @param  int   $organizationId  pipedrives organization Id
-     * @param  array $data  new detials of organization
+     * @param  int   $organizationId pipedrives organization Id
+     * @param  array $data     new detials of organization
      * @return array returns detials of a organization
      */
     public function update($organizationId, array $data = array())
