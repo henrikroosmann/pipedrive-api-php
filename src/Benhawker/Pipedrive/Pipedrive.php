@@ -83,6 +83,11 @@ class Pipedrive
      */
     protected $dealFields;
     /**
+     * Placeholder attritube for the pipedrive products class
+     * @var Products Object
+     */
+    protected $products;
+    /**
      * Placeholder attritube for the pipedrive organizations class
      * @var Organizations Object
      */
@@ -111,12 +116,13 @@ class Pipedrive
         $this->curl = new Library\Curl($url, $apiKey);
 
         //add pipedrive classes to the assoicated property
-        $this->persons       = new Library\Persons($this);
-        $this->deals         = new Library\Deals($this);
-        $this->activities    = new Library\Activities($this);
-        $this->notes         = new Library\Notes($this);
-        $this->dealFields    = new Library\DealFields($this);
-        $this->organizations = new Library\Organizations($this);
+        $this->persons        = new Library\Persons($this);
+        $this->deals          = new Library\Deals($this);
+        $this->activities     = new Library\Activities($this);
+        $this->notes          = new Library\Notes($this);
+        $this->dealFields     = new Library\DealFields($this);
+        $this->products       = new Library\Products($this);
+        $this->organizations  = new Library\Organizations($this);
     }
 
     /**
@@ -177,6 +183,16 @@ class Pipedrive
     public function dealFields()
     {
         return $this->dealFields;
+    }
+
+    /**
+     * Returns the Pipedrive Products Object
+     *
+     * @return Products Object
+     */
+    public function products()
+    {
+        return $this->products;
     }
 
     /**
