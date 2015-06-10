@@ -105,7 +105,7 @@ class Deals
      *
      * @param  int   $dealId  deal id
      * @param  array $data product detials
-     * @return array returns detials of the adding of a product
+     * @return array returns details of the adding of a product
      */
     public function addProduct($dealId, array $data = array())
     {
@@ -123,6 +123,17 @@ class Deals
         }
 
         return $this->curl->post('deals/' . $dealId . '/products', $data);
+    }
+
+    /**
+     * Returns products attached to a deal
+     * 
+     * @param  int    $dealId 
+     * @param  array  $data (start, limit, include_product_data)
+     * @return array  returns products attached to the deal
+     */
+    public function getProducts($dealId, array $data = array()) {
+        return $this->curl->get('deals/' . $dealId . '/products', $data);
     }
 
 }
