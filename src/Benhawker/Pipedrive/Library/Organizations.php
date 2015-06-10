@@ -129,6 +129,7 @@ class Organizations
         $output['data'] = count($this->response) ? $this->response[0] : $this->response;
 
         return $output;
+    }
 
     /**
      * Lists deals associated with a organization.
