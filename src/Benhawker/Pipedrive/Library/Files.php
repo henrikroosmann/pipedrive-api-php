@@ -42,11 +42,10 @@ class Files
     /**
      * Adds a file
      *
-     * @param  string $path absolute path of file to be added
-     * @param  array $data file detials, deal_id, org_id, person_id, product_id, activity_id, note_id
+     * @param  array $data file details, deal_id, org_id, person_id, product_id, activity_id, note_id
      * @return array returns detials of the file
      */
-    public function add(string $path, array $data = array())
+    public function add(array $data = array())
     {
         // if there is not file path specified or file at that path doesn't exist
         // throw error
