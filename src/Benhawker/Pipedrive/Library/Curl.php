@@ -222,7 +222,7 @@ class Curl
                     // class instead".
                     elseif (is_string($value) && strpos($value, '@') === 0) {
                         // add file
-                        $data[$key] = new CURLFile(substr($value, 1));
+                        $data[$key] = new \CURLFile(substr($value, 1));
                     }
                 }
             }
